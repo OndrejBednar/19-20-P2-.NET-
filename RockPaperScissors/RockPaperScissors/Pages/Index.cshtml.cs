@@ -5,21 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using RockPaperScissors.Service;
 
 namespace RockPaperScissors.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly RpsLogic _rpsLogic;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(RpsLogic rpsLogic)
         {
-            _logger = logger;
+            _rpsLogic = rpsLogic;
         }
+
+        public RpsLogic GameData { get; set; }
 
         public void OnGet()
         {
-
+            GameData = _rpsLogic.userData;
         }
     }
 }
